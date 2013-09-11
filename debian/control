@@ -1,0 +1,12 @@
+Source: ros-hydro-hector-quadrotor-controller
+Section: misc
+Priority: extra
+Maintainer: Johannes Meyer <meyer@fsr.tu-darmstadt.de>
+Build-Depends: debhelper (>= 7.0.50~), ros-hydro-catkin, ros-hydro-geometry-msgs, ros-hydro-hector-uav-msgs, ros-hydro-roscpp
+Homepage: http://ros.org/wiki/hector_quadrotor_controller
+Standards-Version: 3.9.2
+
+Package: ros-hydro-hector-quadrotor-controller
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-hydro-geometry-msgs, ros-hydro-hector-uav-msgs, ros-hydro-roscpp
+Description: hector_quadrotor_controller provides libraries and a node for quadrotor control. This package is not required for flying a quadrotor in Gazebo if you are using the simple controller plugin from the hector_quadrotor_gazebo_plugins package.
