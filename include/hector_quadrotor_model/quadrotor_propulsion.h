@@ -31,12 +31,14 @@
 
 #include <hector_uav_msgs/Supply.h>
 #include <hector_uav_msgs/MotorStatus.h>
+#include <hector_uav_msgs/MotorCommand.h>
 #include <hector_uav_msgs/MotorPWM.h>
 #include <geometry_msgs/Twist.h>
 #include <geometry_msgs/Wrench.h>
 
-#include <ros/time.h>
 #include <ros/forwards.h>
+#include <ros/node_handle.h>
+#include <ros/time.h>
 
 #include <queue>
 
@@ -52,7 +54,7 @@ public:
   QuadrotorPropulsion();
   ~QuadrotorPropulsion();
 
-  void configure(const std::string& ns = "~");
+  bool configure(const ros::NodeHandle &param = ros::NodeHandle("~"));
   void reset();
   void update(double dt);
 
@@ -66,7 +68,8 @@ public:
   const hector_uav_msgs::Supply& getSupply() const { return supply_; }
   const hector_uav_msgs::MotorStatus& getMotorStatus() const { return motor_status_; }
 
-  void addVoltageToQueue(const hector_uav_msgs::MotorPWMConstPtr& command);
+  void addCommandToQueue(const hector_uav_msgs::MotorCommandConstPtr& command);
+  void addPWMToQueue(const hector_uav_msgs::MotorPWMConstPtr& pwm);
   bool processQueue(const ros::Time& timestamp, const ros::Duration& tolerance = ros::Duration(), const ros::Duration& delay = ros::Duration(), const ros::WallDuration &wait = ros::WallDuration(), ros::CallbackQueue *callback_queue = 0);
 
   void f(const double xin[4], const double uin[10], double dt, double y[14], double xpred[4]) const;
