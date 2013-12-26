@@ -9,6 +9,8 @@ include_directories(include ${catkin_INCLUDE_DIRS})
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
+find_package(Eigen REQUIRED)
+include_directories(${EIGEN_INCLUDE_DIRS})
 
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
@@ -27,7 +29,7 @@ include_directories(include ${catkin_INCLUDE_DIRS})
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
     INCLUDE_DIRS include
-    LIBRARIES
+    LIBRARIES hector_quadrotor_propulsion hector_quadrotor_aerodynamics
     CATKIN_DEPENDS geometry_msgs hector_uav_msgs
     DEPENDS 
 )
@@ -36,32 +38,12 @@ catkin_package(
 ## Build ##
 ###########
 
-include_directories(matlab/codegen/lib)
-add_subdirectory(matlab)
+add_library(hector_quadrotor_propulsion src/quadrotor_propulsion.cpp)
+add_dependencies(hector_quadrotor_propulsion hector_uav_msgs_generate_messages_cpp)
+#target_link_libraries(hector_quadrotor_propulsion quadrotorPropulsion)
 
-option(BUILD_PROPULSION_MODEL "Build a model of the quadrotor propulsion system (requires Matlab)" ON)
-if(BUILD_PROPULSION_MODEL)
-  if(TARGET quadrotor_model)
-    add_library(hector_quadrotor_propulsion src/quadrotor_propulsion.cpp)
-    target_link_libraries(hector_quadrotor_propulsion ${CMAKE_CURRENT_BINARY_DIR}/matlab/quadrotorPropulsion.a)
-    add_dependencies(hector_quadrotor_propulsion quadrotor_model)
-  else()
-    message(WARNING "Quadrotor model is not available. Skipping target hector_quadrotor_propulsion...")
-    set(BUILD_PROPULSION_MODEL OFF)
-  endif()
-endif()
-
-option(BUILD_AERODYNAMICS_MODEL "Use a model of the quadrotor aerodynamics (requires Matlab)" ON)
-if(BUILD_AERODYNAMICS_MODEL)
-  if(TARGET quadrotor_model)
-    add_library(hector_quadrotor_aerodynamics src/quadrotor_aerodynamics.cpp)
-    target_link_libraries(hector_quadrotor_aerodynamics ${CMAKE_CURRENT_BINARY_DIR}/matlab/quadrotorDrag.a)
-    add_dependencies(hector_quadrotor_aerodynamics quadrotor_model)
-  else()
-    message(WARNING "Quadrotor model is not available. Skipping target hector_quadrotor_aerodynamics...")
-    set(BUILD_AERODYNAMICS_MODEL OFF)
-  endif()
-endif()
+add_library(hector_quadrotor_aerodynamics src/quadrotor_aerodynamics.cpp)
+#target_link_libraries(hector_quadrotor_aerodynamics quadrotorDrag)
 
 #############
 ## Install ##
@@ -70,41 +52,17 @@ endif()
 # all install targets should use catkin DESTINATION variables
 # See http://ros.org/doc/api/catkin/html/adv_user_guide/variables.html
 
-## Mark executable scripts (Python etc.) for installation
-## in contrast to setup.py, you can choose the destination
-# install(PROGRAMS
-#   scripts/my_python_script
-#   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# )
-
-## Mark executables and/or libraries for installation
-# install(TARGETS @{name} @{name}_node
-#   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-#   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-#   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# )
-
-if(TARGET hector_quadrotor_propulsion)
-  install(TARGETS hector_quadrotor_propulsion LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION})
-endif()
-
-if(TARGET hector_quadrotor_aerodynamics)
-  install(TARGETS hector_quadrotor_aerodynamics LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION})
-endif()
+install(
+  TARGETS hector_quadrotor_propulsion hector_quadrotor_aerodynamics
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+)
 
 ## Mark cpp header files for installation
-# install(DIRECTORY include/${PROJECT_NAME}/
-#   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
-#   FILES_MATCHING PATTERN "*.h"
-#   PATTERN ".svn" EXCLUDE
-# )
-
-## Mark other files for installation (e.g. launch and bag files, etc.)
-# install(FILES
-#   # myfile1
-#   # myfile2
-#   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-# )
+install(DIRECTORY include/${PROJECT_NAME}/
+  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+  FILES_MATCHING PATTERN "*.h"
+  PATTERN ".svn" EXCLUDE
+)
 
 install(DIRECTORY param DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 
