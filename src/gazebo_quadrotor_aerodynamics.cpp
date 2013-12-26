@@ -39,15 +39,19 @@ using namespace math;
 using namespace hector_quadrotor_model;
 
 GazeboQuadrotorAerodynamics::GazeboQuadrotorAerodynamics()
+  : node_handle_(0)
 {
 }
 
 GazeboQuadrotorAerodynamics::~GazeboQuadrotorAerodynamics()
 {
   event::Events::DisconnectWorldUpdateBegin(updateConnection);
-  node_handle_->shutdown();
-  callback_queue_thread_.join();
-  delete node_handle_;
+  if (node_handle_) {
+    node_handle_->shutdown();
+    if (callback_queue_thread_.joinable())
+      callback_queue_thread_.join();
+    delete node_handle_;
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -60,24 +64,28 @@ void GazeboQuadrotorAerodynamics::Load(physics::ModelPtr _model, sdf::ElementPtr
   // default parameters
   namespace_.clear();
   param_namespace_ = "quadrotor_aerodynamics";
-  wind_topic_ = "wind";
+  wind_topic_ = "/wind";
 
   // load parameters
   if (_sdf->HasElement("robotNamespace")) namespace_ = _sdf->GetElement("robotNamespace")->Get<std::string>();
   if (_sdf->HasElement("paramNamespace")) param_namespace_ = _sdf->GetElement("paramNamespace")->Get<std::string>();
   if (_sdf->HasElement("windTopicName"))  wind_topic_ = _sdf->GetElement("windTopicName")->Get<std::string>();
 
-  // get model parameters
-  model_.configure(param_namespace_);
-
-  // start ros node
+  // Make sure the ROS node for Gazebo has already been initialized
   if (!ros::isInitialized())
   {
-    int argc = 0;
-    char **argv = NULL;
-    ros::init(argc,argv,"gazebo",ros::init_options::NoSigintHandler|ros::init_options::AnonymousName);
+    ROS_FATAL_STREAM("A ROS node for Gazebo has not been initialized, unable to load plugin. "
+      << "Load the Gazebo system plugin 'libgazebo_ros_api_plugin.so' in the gazebo_ros package)");
+    return;
   }
+
   node_handle_ = new ros::NodeHandle(namespace_);
+
+  // get model parameters
+  if (!model_.configure(ros::NodeHandle(*node_handle_, param_namespace_))) {
+    gzwarn << "[quadrotor_propulsion] Could not properly configure the aerodynamics plugin. Make sure you loaded the parameter file." << std::endl;
+    return;
+  }
 
   // subscribe command
   if (!wind_topic_.empty())
@@ -91,7 +99,7 @@ void GazeboQuadrotorAerodynamics::Load(physics::ModelPtr _model, sdf::ElementPtr
     wind_subscriber_ = node_handle_->subscribe(ops);
   }
 
-  callback_queue_thread_ = boost::thread( boost::bind( &GazeboQuadrotorAerodynamics::QueueThread,this ) );
+  // callback_queue_thread_ = boost::thread( boost::bind( &GazeboQuadrotorAerodynamics::QueueThread,this ) );
 
   // New Mechanism for Updating every World Cycle
   // Listen to the update event. This event is broadcast every
@@ -111,12 +119,16 @@ void GazeboQuadrotorAerodynamics::Update()
   if (dt <= 0.0) return;
 
   // Get new commands/state
-  // callback_queue_.callAvailable();
+  callback_queue_.callAvailable();
 
   // fill input vector u for drag model
+  geometry_msgs::Quaternion orientation;
+  fromQuaternion(link->GetWorldPose().rot, orientation);
+  model_.setOrientation(orientation);
+
   geometry_msgs::Twist twist;
-  fromVector(link->GetRelativeLinearVel(), twist.linear);
-  fromVector(link->GetRelativeAngularVel(), twist.angular);
+  fromVector(link->GetWorldLinearVel(), twist.linear);
+  fromVector(link->GetWorldAngularVel(), twist.angular);
   model_.setTwist(twist);
 
   // update the model
