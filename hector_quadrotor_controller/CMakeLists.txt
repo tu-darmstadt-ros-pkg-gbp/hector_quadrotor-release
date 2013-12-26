@@ -4,7 +4,7 @@ project(hector_quadrotor_controller)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS roscpp geometry_msgs hector_uav_msgs)
+find_package(catkin REQUIRED COMPONENTS roscpp geometry_msgs sensor_msgs nav_msgs hector_uav_msgs hardware_interface controller_interface)
 include_directories(include ${catkin_INCLUDE_DIRS})
 
 ## System dependencies are found with CMake's conventions
@@ -26,9 +26,9 @@ include_directories(include ${catkin_INCLUDE_DIRS})
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-    INCLUDE_DIRS # include
-    LIBRARIES
-    CATKIN_DEPENDS roscpp geometry_msgs hector_uav_msgs
+    INCLUDE_DIRS include
+    LIBRARIES hector_quadrotor_controller
+    CATKIN_DEPENDS roscpp geometry_msgs sensor_msgs nav_msgs hector_uav_msgs hardware_interface controller_interface
     DEPENDS
 )
 
@@ -36,18 +36,18 @@ catkin_package(
 ## Build ##
 ###########
 
-## Declare a cpp library
-# add_library(@{name}
-#   src/${PROJECT_NAME}/@name.cpp
-# )
+add_library(hector_quadrotor_controller src/quadrotor_interface.cpp src/pid.cpp)
+target_link_libraries(hector_quadrotor_controller ${catkin_LIBRARIES})
+add_dependencies(hector_quadrotor_controller hector_uav_msgs_generate_messages_cpp)
 
-## Declare a cpp executable
-add_executable(test_trajectory src/test_trajectory.cpp)
-target_link_libraries(test_trajectory ${catkin_LIBRARIES})
+add_library(hector_quadrotor_pose_controller src/pose_controller.cpp)
+target_link_libraries(hector_quadrotor_pose_controller hector_quadrotor_controller)
 
-## Add cmake target dependencies of the executable/library
-## as an example, message headers may need to be generated before nodes
-# add_dependencies(@{name}_node @{name}_generate_messages_cpp)
+add_library(hector_quadrotor_twist_controller src/twist_controller.cpp)
+target_link_libraries(hector_quadrotor_twist_controller hector_quadrotor_controller)
+
+add_library(hector_quadrotor_motor_controller src/motor_controller.cpp)
+target_link_libraries(hector_quadrotor_motor_controller hector_quadrotor_controller)
 
 #############
 ## Install ##
@@ -56,31 +56,23 @@ target_link_libraries(test_trajectory ${catkin_LIBRARIES})
 # all install targets should use catkin DESTINATION variables
 # See http://ros.org/doc/api/catkin/html/adv_user_guide/variables.html
 
-## Mark executable scripts (Python etc.) for installation
-## in contrast to setup.py, you can choose the destination
-# install(PROGRAMS
-#   scripts/my_python_script
-#   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# )
-
 ## Mark executables and/or libraries for installation
-install(TARGETS test_trajectory
+install(TARGETS hector_quadrotor_controller hector_quadrotor_pose_controller hector_quadrotor_twist_controller hector_quadrotor_motor_controller
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
 ## Mark cpp header files for installation
-# install(DIRECTORY include/${PROJECT_NAME}/
-#   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
-#   FILES_MATCHING PATTERN "*.h"
-#   PATTERN ".svn" EXCLUDE
-# )
+install(DIRECTORY include/${PROJECT_NAME}/
+  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+  FILES_MATCHING PATTERN "*.h"
+)
 
 ## Mark other files for installation (e.g. launch and bag files, etc.)
-# install(FILES
-#   # myfile1
-#   # myfile2
-#   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-# )
+install(DIRECTORY launch params DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
+install(FILES
+  plugin.xml
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
 
