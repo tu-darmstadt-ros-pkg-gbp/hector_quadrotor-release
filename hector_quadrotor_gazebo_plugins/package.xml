@@ -1,6 +1,6 @@
 <package>
   <name>hector_quadrotor_gazebo_plugins</name>
-  <version>0.3.0</version>
+  <version>0.3.1</version>
   <description>hector_quadrotor_gazebo_plugins provides gazebo plugins for using quadrotors in gazebo.
      The hector_gazebo_ros_baro sensor plugin simulates an altimeter based on barometric pressure.
      hector_quadrotor_simple_controller is a simple controller allowing to command the quadrotor's velocity
@@ -24,6 +24,7 @@
   <build_depend>hector_quadrotor_model</build_depend>
   <build_depend>geometry_msgs</build_depend>
   <build_depend>hector_uav_msgs</build_depend>
+  <build_depend>std_srvs</build_depend>
 
   <!-- Dependencies needed after this package is compiled. -->
   <run_depend>roscpp</run_depend>
@@ -32,11 +33,6 @@
   <run_depend>hector_quadrotor_model</run_depend>
   <run_depend>geometry_msgs</run_depend>
   <run_depend>hector_uav_msgs</run_depend>
-
-  <!-- Dependencies needed only for running tests. -->
-
-  <export>
-    <gazebo_ros plugin_path="${prefix}/lib"/>
-  </export>
+  <run_depend>std_srvs</run_depend>
 
 </package>
