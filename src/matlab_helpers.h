@@ -26,52 +26,72 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //=================================================================================================
 
-#ifndef HECTOR_QUADROTOR_MODEL_QUADROTOR_AERODYNAMICS_H
-#define HECTOR_QUADROTOR_MODEL_QUADROTOR_AERODYNAMICS_H
+#ifndef HECTOR_QUADROTOR_MODEL_MATLAB_HELPERS_H
+#define HECTOR_QUADROTOR_MODEL_MATLAB_HELPERS_H
 
-#include <geometry_msgs/Quaternion.h>
-#include <geometry_msgs/Twist.h>
-#include <geometry_msgs/Vector3.h>
-#include <geometry_msgs/Wrench.h>
+#include <limits>
+#include <cmath>
 
-#include <ros/node_handle.h>
+typedef double real_T;
+typedef uint32_t int32_T;
+typedef bool boolean_T;
 
-#include <boost/thread/mutex.hpp>
-
-namespace hector_quadrotor_model
+static const real_T rtInf = std::numeric_limits<real_T>::infinity();
+static inline boolean_T rtIsInf(real_T value)
 {
-
-class QuadrotorAerodynamics {
-public:
-  QuadrotorAerodynamics();
-  ~QuadrotorAerodynamics();
-
-  bool configure(const ros::NodeHandle &param = ros::NodeHandle("~"));
-  void reset();
-  void update(double dt);
-
-  void setOrientation(const geometry_msgs::Quaternion& orientation);
-  void setTwist(const geometry_msgs::Twist& twist);
-  void setBodyTwist(const geometry_msgs::Twist& twist);
-  void setWind(const geometry_msgs::Vector3& wind);
-
-  const geometry_msgs::Wrench& getWrench() const { return wrench_; }
-
-  void f(const double uin[6], double dt, double y[6]) const;
-
-private:
-  geometry_msgs::Quaternion orientation_;
-  geometry_msgs::Twist twist_;
-  geometry_msgs::Vector3 wind_;
-
-  geometry_msgs::Wrench wrench_;
-
-  boost::mutex mutex_;
-
-  class DragModel;
-  DragModel *drag_model_;
-};
-
+  return std::isinf(value);
 }
 
-#endif // HECTOR_QUADROTOR_MODEL_QUADROTOR_AERODYNAMICS_H
+static const real_T rtNaN = std::numeric_limits<real_T>::quiet_NaN();
+static inline boolean_T rtIsNaN(real_T value)
+{
+  return std::isnan(value);
+}
+
+static real_T rt_powd_snf(real_T u0, real_T u1)
+{
+  real_T y;
+  real_T d0;
+  real_T d1;
+  if (rtIsNaN(u0) || rtIsNaN(u1)) {
+    y = rtNaN;
+  } else {
+    d0 = fabs(u0);
+    d1 = fabs(u1);
+    if (rtIsInf(u1)) {
+      if (d0 == 1.0) {
+        y = rtNaN;
+      } else if (d0 > 1.0) {
+        if (u1 > 0.0) {
+          y = rtInf;
+        } else {
+          y = 0.0;
+        }
+      } else if (u1 > 0.0) {
+        y = 0.0;
+      } else {
+        y = rtInf;
+      }
+    } else if (d1 == 0.0) {
+      y = 1.0;
+    } else if (d1 == 1.0) {
+      if (u1 > 0.0) {
+        y = u0;
+      } else {
+        y = 1.0 / u0;
+      }
+    } else if (u1 == 2.0) {
+      y = u0 * u0;
+    } else if ((u1 == 0.5) && (u0 >= 0.0)) {
+      y = sqrt(u0);
+    } else if ((u0 < 0.0) && (u1 > floor(u1))) {
+      y = rtNaN;
+    } else {
+      y = pow(u0, u1);
+    }
+  }
+
+  return y;
+}
+
+#endif // HECTOR_QUADROTOR_MODEL_MATLAB_HELPERS_H
