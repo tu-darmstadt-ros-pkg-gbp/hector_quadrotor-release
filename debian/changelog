@@ -1,0 +1,15 @@
+ros-hydro-hector-quadrotor-teleop (0.3.1-1quantal) quantal; urgency=high
+
+  * added slow button (btn 6 on Logitech Gamepad)
+  * Contributors: Johannes Meyer
+
+ -- Johannes Meyer <meyer@fsr.tu-darmstadt.de>  Wed, 25 Dec 2013 23:00:00 -0000
+
+ros-hydro-hector-quadrotor-teleop (0.3.0-1quantal) quantal; urgency=high
+
+  * Catkinized stack hector_quadrotor and integrated hector_quadrotor_demo package from former hector_quadrotor_apps stack
+  * decreased z_velocity_max to 2.0 m/s in logitech_gamepad.launch
+
+ -- Johannes Meyer <meyer@fsr.tu-darmstadt.de>  Tue, 10 Sep 2013 22:00:00 -0000
+
+
