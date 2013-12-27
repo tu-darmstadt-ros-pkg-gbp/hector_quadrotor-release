@@ -1,0 +1,13 @@
+ros-hydro-hector-uav-msgs (0.3.1-1raring) raring; urgency=high
+
+
+
+ -- Johannes Meyer <meyer@fsr.tu-darmstadt.de>  Wed, 25 Dec 2013 23:00:00 -0000
+
+ros-hydro-hector-uav-msgs (0.3.0-1raring) raring; urgency=high
+
+  * Catkinized stack hector_quadrotor and integrated hector_quadrotor_demo package from former hector_quadrotor_apps stack
+
+ -- Johannes Meyer <meyer@fsr.tu-darmstadt.de>  Tue, 10 Sep 2013 22:00:00 -0000
+
+
