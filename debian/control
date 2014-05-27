@@ -1,0 +1,12 @@
+Source: ros-hydro-hector-quadrotor-controller
+Section: misc
+Priority: extra
+Maintainer: Johannes Meyer <meyer@fsr.tu-darmstadt.de>
+Build-Depends: debhelper (>= 9.0.0), ros-hydro-catkin, ros-hydro-controller-interface, ros-hydro-geometry-msgs, ros-hydro-hardware-interface, ros-hydro-hector-uav-msgs, ros-hydro-nav-msgs, ros-hydro-roscpp, ros-hydro-sensor-msgs, ros-hydro-std-srvs
+Homepage: http://ros.org/wiki/hector_quadrotor_controller
+Standards-Version: 3.9.2
+
+Package: ros-hydro-hector-quadrotor-controller
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-hydro-controller-interface, ros-hydro-geometry-msgs, ros-hydro-hardware-interface, ros-hydro-hector-uav-msgs, ros-hydro-nav-msgs, ros-hydro-roscpp, ros-hydro-sensor-msgs, ros-hydro-std-srvs
+Description: hector_quadrotor_controller provides libraries and a node for quadrotor control using ros_control.
