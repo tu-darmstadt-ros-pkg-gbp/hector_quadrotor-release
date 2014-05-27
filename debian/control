@@ -1,0 +1,12 @@
+Source: ros-hydro-hector-quadrotor-model
+Section: misc
+Priority: extra
+Maintainer: Johannes Meyer <meyer@fsr.tu-darmstadt.de>
+Build-Depends: debhelper (>= 9.0.0), libeigen3-dev, ros-hydro-catkin, ros-hydro-geometry-msgs, ros-hydro-hector-uav-msgs, ros-hydro-roscpp
+Homepage: http://ros.org/wiki/hector_quadrotor_model
+Standards-Version: 3.9.2
+
+Package: ros-hydro-hector-quadrotor-model
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-hydro-geometry-msgs, ros-hydro-hector-uav-msgs, ros-hydro-roscpp
+Description: hector_quadrotor_model provides libraries that model several aspects of quadrotor dynamics.
