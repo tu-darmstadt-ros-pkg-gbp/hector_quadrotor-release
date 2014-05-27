@@ -1,0 +1,12 @@
+Source: ros-hydro-hector-quadrotor
+Section: misc
+Priority: extra
+Maintainer: Johannes Meyer <meyer@fsr.tu-darmstadt.de>
+Build-Depends: debhelper (>= 9.0.0), ros-hydro-catkin
+Homepage: http://ros.org/wiki/hector_quadrotor
+Standards-Version: 3.9.2
+
+Package: ros-hydro-hector-quadrotor
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-hydro-hector-quadrotor-controller, ros-hydro-hector-quadrotor-controller-gazebo, ros-hydro-hector-quadrotor-description, ros-hydro-hector-quadrotor-gazebo, ros-hydro-hector-quadrotor-gazebo-plugins, ros-hydro-hector-quadrotor-model, ros-hydro-hector-quadrotor-teleop, ros-hydro-hector-uav-msgs
+Description: hector_quadrotor contains packages related to modeling, control and simulation of quadrotor UAV systems
