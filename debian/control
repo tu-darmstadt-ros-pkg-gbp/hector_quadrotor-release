@@ -1,0 +1,12 @@
+Source: ros-hydro-hector-quadrotor-teleop
+Section: misc
+Priority: extra
+Maintainer: Johannes Meyer <meyer@fsr.tu-darmstadt.de>
+Build-Depends: debhelper (>= 9.0.0), ros-hydro-catkin, ros-hydro-geometry-msgs, ros-hydro-roscpp, ros-hydro-sensor-msgs
+Homepage: http://ros.org/wiki/hector_quadrotor_teleop
+Standards-Version: 3.9.2
+
+Package: ros-hydro-hector-quadrotor-teleop
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-hydro-geometry-msgs, ros-hydro-roscpp, ros-hydro-sensor-msgs
+Description: hector_quadrotor_teleop enables quadrotor flying with a joystick by processing joy/Joy messages and translating them to geometry_msgs/Twist.
