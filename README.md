@@ -1,3 +1,33 @@
+## hector_quadrotor (hydro) - 0.3.2-1
+
+The packages in the `hector_quadrotor` repository were released into the `hydro` distro by running `/usr/bin/bloom-release hector_quadrotor -t hydro -r hydro` on `Tue, 27 May 2014 12:51:32 -0000`
+
+These packages were released:
+- `hector_quadrotor`
+- `hector_quadrotor_controller`
+- `hector_quadrotor_controller_gazebo`
+- `hector_quadrotor_demo`
+- `hector_quadrotor_description`
+- `hector_quadrotor_gazebo`
+- `hector_quadrotor_gazebo_plugins`
+- `hector_quadrotor_model`
+- `hector_quadrotor_pose_estimation`
+- `hector_quadrotor_teleop`
+- `hector_uav_msgs`
+
+Version of package(s) in repository `hector_quadrotor`:
+- rosdistro version: `0.3.2-0`
+- old version: `0.3.2-0`
+- new version: `0.3.2-1`
+
+Versions of tools used:
+- bloom version: `0.5.9`
+- catkin_pkg version: `0.2.2`
+- rosdep version: `0.10.27`
+- rosdistro version: `0.3.5`
+- vcstools version: `0.1.35`
+
+
 ## hector_quadrotor (hydro) - 0.3.2-0
 
 User `meyer@fliegtfix` released the packages in the `hector_quadrotor` repository into the `hydro` distro by running `/usr/bin/bloom-release --track hydro --rosdistro hydro --edit hector_quadrotor` on `Sun, 30 Mar 2014 00:30:21 -0000`
