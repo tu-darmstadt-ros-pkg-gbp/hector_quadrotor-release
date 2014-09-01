@@ -1,3 +1,35 @@
+## hector_quadrotor (indigo) - 0.3.3-0
+
+The packages in the `hector_quadrotor` repository were released into the `indigo` distro by running `/usr/bin/bloom-release --rosdistro indigo --track indigo --new hector_quadrotor` on `Mon, 01 Sep 2014 19:01:31 -0000`
+
+These packages were released:
+- `hector_quadrotor`
+- `hector_quadrotor_controller`
+- `hector_quadrotor_controller_gazebo`
+- `hector_quadrotor_demo`
+- `hector_quadrotor_description`
+- `hector_quadrotor_gazebo`
+- `hector_quadrotor_gazebo_plugins`
+- `hector_quadrotor_model`
+- `hector_quadrotor_pose_estimation`
+- `hector_quadrotor_teleop`
+- `hector_uav_msgs`
+
+Version of package(s) in repository `hector_quadrotor`:
+- upstream repository: https://github.com/tu-darmstadt-ros-pkg/hector_quadrotor.git
+- release repository: https://github.com/tu-darmstadt-ros-pkg-gbp/hector_quadrotor-release.git
+- rosdistro version: `null`
+- old version: `null`
+- new version: `0.3.3-0`
+
+Versions of tools used:
+- bloom version: `0.5.11`
+- catkin_pkg version: `0.2.4`
+- rosdep version: `0.10.30`
+- rosdistro version: `0.3.5`
+- vcstools version: `0.1.35`
+
+
 ## hector_quadrotor (hydro) - 0.3.3-0
 
 The packages in the `hector_quadrotor` repository were released into the `hydro` distro by running `/usr/bin/bloom-release hector_quadrotor --track hydro --rosdistro hydro` on `Mon, 01 Sep 2014 14:33:18 -0000`
