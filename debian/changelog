@@ -1,0 +1,37 @@
+ros-hydro-hector-quadrotor-model (0.3.3-0raring) raring; urgency=high
+
+  * fixed target_link_libraries() line for the quadrotor_aerodynamics library
+  * fixed missing cmake commands to link with boost and roscpp
+  * always use newest available motor command in propulsion plugin
+  * added cmake_modules dependency
+  * Contributors: Johannes Meyer, Rasit Eskicioglu
+
+ -- Johannes Meyer <meyer@fsr.tu-darmstadt.de>  Sun, 31 Aug 2014 22:00:00 -0000
+
+ros-hydro-hector-quadrotor-model (0.3.2-0raring) raring; urgency=high
+
+
+
+ -- Johannes Meyer <meyer@fsr.tu-darmstadt.de>  Sat, 29 Mar 2014 23:00:00 -0000
+
+ros-hydro-hector-quadrotor-model (0.3.1-0raring) raring; urgency=high
+
+  * fixed copy&paste error in quadrotor_aerodynamics.cpp
+  * output drag forces in body coordinate system and added orientation input
+  * fixed configuration namespace and plugin cleanup
+  * added boolean return value for configure() methods
+  * accept hector_uav_msgs/MotorCommand messages directly for the propulsion model/plugin
+  * copied generated C code within the cpp classes to not require Matlab for compilation
+  * fixed sign of aerodynamic forces
+  * use precompiled codegen libraries if available
+  * Contributors: Johannes Meyer
+
+ -- Johannes Meyer <meyer@fsr.tu-darmstadt.de>  Wed, 25 Dec 2013 23:00:00 -0000
+
+ros-hydro-hector-quadrotor-model (0.3.0-0raring) raring; urgency=high
+
+  * Catkinized stack hector_quadrotor and integrated hector_quadrotor_demo package from former hector_quadrotor_apps stack
+
+ -- Johannes Meyer <meyer@fsr.tu-darmstadt.de>  Tue, 10 Sep 2013 22:00:00 -0000
+
+
