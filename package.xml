@@ -1,6 +1,6 @@
 <package>
   <name>hector_quadrotor_model</name>
-  <version>0.3.2</version>
+  <version>0.3.3</version>
   <description>hector_quadrotor_model provides libraries that model several aspects of quadrotor dynamics.</description>
   <maintainer email="meyer@fsr.tu-darmstadt.de">Johannes Meyer</maintainer>
 
@@ -20,11 +20,14 @@
   <build_depend>hector_uav_msgs</build_depend>
   <build_depend>eigen</build_depend>
   <build_depend>roscpp</build_depend>
+  <build_depend>cmake_modules</build_depend>
+  <build_depend>boost</build_depend>
 
   <!-- Dependencies needed after this package is compiled. -->
   <run_depend>geometry_msgs</run_depend>
   <run_depend>hector_uav_msgs</run_depend>
   <run_depend>roscpp</run_depend>
+  <run_depend>boost</run_depend>
 
   <!-- Dependencies needed only for running tests. -->
 
