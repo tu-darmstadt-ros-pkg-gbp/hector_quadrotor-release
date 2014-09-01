@@ -1,0 +1,12 @@
+Source: ros-indigo-hector-quadrotor-model
+Section: misc
+Priority: extra
+Maintainer: Johannes Meyer <meyer@fsr.tu-darmstadt.de>
+Build-Depends: debhelper (>= 9.0.0), libboost-all-dev, libeigen3-dev, ros-indigo-catkin, ros-indigo-cmake-modules, ros-indigo-geometry-msgs, ros-indigo-hector-uav-msgs, ros-indigo-roscpp
+Homepage: http://ros.org/wiki/hector_quadrotor_model
+Standards-Version: 3.9.2
+
+Package: ros-indigo-hector-quadrotor-model
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libboost-all-dev, ros-indigo-geometry-msgs, ros-indigo-hector-uav-msgs, ros-indigo-roscpp
+Description: hector_quadrotor_model provides libraries that model several aspects of quadrotor dynamics.
