@@ -1,6 +1,6 @@
 <package>
   <name>hector_quadrotor_gazebo</name>
-  <version>0.3.2</version>
+  <version>0.3.3</version>
   <description>hector_quadrotor_gazebo provides a quadrotor model for the gazebo simulator.
      It can be commanded using geometry_msgs/Twist messages.</description>
   <maintainer email="meyer@fsr.tu-darmstadt.de">Johannes Meyer</maintainer>
@@ -29,8 +29,12 @@
   <run_depend>gazebo_plugins</run_depend>
   <run_depend>hector_gazebo_plugins</run_depend>
   <run_depend>hector_sensors_gazebo</run_depend>
+  <run_depend>hector_quadrotor_description</run_depend>
+  <run_depend>hector_quadrotor_model</run_depend>
   <run_depend>hector_quadrotor_gazebo_plugins</run_depend>
   <run_depend>hector_quadrotor_controller_gazebo</run_depend>
+  <run_depend>hector_quadrotor_teleop</run_depend>
+  <run_depend>hector_uav_msgs</run_depend>
   <run_depend>message_to_tf</run_depend>
   <run_depend>robot_state_publisher</run_depend>
 
