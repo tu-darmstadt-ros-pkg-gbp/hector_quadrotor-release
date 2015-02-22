@@ -1,0 +1,35 @@
+ros-indigo-hector-quadrotor-teleop (0.3.4-0trusty) trusty; urgency=high
+
+  * Add optional parameter to set the joystick device
+  * Contributors: whoenig
+
+ -- Johannes Meyer <meyer@fsr.tu-darmstadt.de>  Sat, 21 Feb 2015 23:00:00 -0000
+
+ros-indigo-hector-quadrotor-teleop (0.3.3-0trusty) trusty; urgency=high
+
+  * added run dependency to joy package (joystick drivers)
+  * Contributors: Johannes Meyer
+
+ -- Johannes Meyer <meyer@fsr.tu-darmstadt.de>  Sun, 31 Aug 2014 22:00:00 -0000
+
+ros-indigo-hector-quadrotor-teleop (0.3.2-0trusty) trusty; urgency=high
+
+
+
+ -- Johannes Meyer <meyer@fsr.tu-darmstadt.de>  Sat, 29 Mar 2014 23:00:00 -0000
+
+ros-indigo-hector-quadrotor-teleop (0.3.1-0trusty) trusty; urgency=high
+
+  * added slow button (btn 6 on Logitech Gamepad)
+  * Contributors: Johannes Meyer
+
+ -- Johannes Meyer <meyer@fsr.tu-darmstadt.de>  Wed, 25 Dec 2013 23:00:00 -0000
+
+ros-indigo-hector-quadrotor-teleop (0.3.0-0trusty) trusty; urgency=high
+
+  * Catkinized stack hector_quadrotor and integrated hector_quadrotor_demo package from former hector_quadrotor_apps stack
+  * decreased z_velocity_max to 2.0 m/s in logitech_gamepad.launch
+
+ -- Johannes Meyer <meyer@fsr.tu-darmstadt.de>  Tue, 10 Sep 2013 22:00:00 -0000
+
+

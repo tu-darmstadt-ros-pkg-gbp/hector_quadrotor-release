@@ -1,0 +1,12 @@
+Source: ros-indigo-hector-quadrotor-teleop
+Section: misc
+Priority: extra
+Maintainer: Johannes Meyer <meyer@fsr.tu-darmstadt.de>
+Build-Depends: debhelper (>= 9.0.0), ros-indigo-catkin, ros-indigo-geometry-msgs, ros-indigo-roscpp, ros-indigo-sensor-msgs
+Homepage: http://ros.org/wiki/hector_quadrotor_teleop
+Standards-Version: 3.9.2
+
+Package: ros-indigo-hector-quadrotor-teleop
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-indigo-geometry-msgs, ros-indigo-joy, ros-indigo-roscpp, ros-indigo-sensor-msgs
+Description: hector_quadrotor_teleop enables quadrotor flying with a joystick by processing joy/Joy messages and translating them to geometry_msgs/Twist.
