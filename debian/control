@@ -1,0 +1,12 @@
+Source: ros-indigo-hector-quadrotor-demo
+Section: misc
+Priority: extra
+Maintainer: Johannes Meyer <meyer@fsr.tu-darmstadt.de>
+Build-Depends: debhelper (>= 9.0.0), ros-indigo-catkin
+Homepage: http://ros.org/wiki/hector_quadrotor_demo
+Standards-Version: 3.9.2
+
+Package: ros-indigo-hector-quadrotor-demo
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-indigo-hector-gazebo-worlds, ros-indigo-hector-geotiff, ros-indigo-hector-mapping, ros-indigo-hector-quadrotor-gazebo, ros-indigo-hector-trajectory-server
+Description: hector_quadrotor_demo contains various launch files and needed dependencies for demonstration of the hector_quadrotor stack (indoor/outdoor flight in gazebo etc.)
