@@ -1,0 +1,39 @@
+ros-indigo-hector-quadrotor-demo (0.3.5-0trusty) trusty; urgency=high
+
+
+
+ -- Johannes Meyer <meyer@fsr.tu-darmstadt.de>  Fri, 27 Mar 2015 23:00:00 -0000
+
+ros-indigo-hector-quadrotor-demo (0.3.4-0trusty) trusty; urgency=high
+
+
+
+ -- Johannes Meyer <meyer@fsr.tu-darmstadt.de>  Sat, 21 Feb 2015 23:00:00 -0000
+
+ros-indigo-hector-quadrotor-demo (0.3.3-0trusty) trusty; urgency=high
+
+
+
+ -- Johannes Meyer <meyer@fsr.tu-darmstadt.de>  Sun, 31 Aug 2014 22:00:00 -0000
+
+ros-indigo-hector-quadrotor-demo (0.3.2-0trusty) trusty; urgency=high
+
+
+
+ -- Johannes Meyer <meyer@fsr.tu-darmstadt.de>  Sat, 29 Mar 2014 23:00:00 -0000
+
+ros-indigo-hector-quadrotor-demo (0.3.1-0trusty) trusty; urgency=high
+
+  * updated demo launch files
+  * updated rviz configs
+  * Contributors: Johannes Meyer
+
+ -- Johannes Meyer <meyer@fsr.tu-darmstadt.de>  Wed, 25 Dec 2013 23:00:00 -0000
+
+ros-indigo-hector-quadrotor-demo (0.3.0-0trusty) trusty; urgency=high
+
+  * Catkinized stack hector_quadrotor and integrated hector_quadrotor_demo package from former hector_quadrotor_apps stack
+
+ -- Johannes Meyer <meyer@fsr.tu-darmstadt.de>  Tue, 10 Sep 2013 22:00:00 -0000
+
+
