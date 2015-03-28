@@ -1,0 +1,12 @@
+Source: ros-indigo-hector-quadrotor-pose-estimation
+Section: misc
+Priority: extra
+Maintainer: Johannes Meyer <meyer@fsr.tu-darmstadt.de>
+Build-Depends: debhelper (>= 9.0.0), ros-indigo-catkin, ros-indigo-hector-pose-estimation (>= 0.2.0), ros-indigo-hector-uav-msgs
+Homepage: http://ros.org/wiki/hector_quadrotor_pose_estimation
+Standards-Version: 3.9.2
+
+Package: ros-indigo-hector-quadrotor-pose-estimation
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-indigo-hector-pose-estimation (>= 0.2.0), ros-indigo-hector-uav-msgs, ros-indigo-nodelet
+Description: hector_quadrotor_pose_estimation provides a hector_pose_estimation node and nodelet specialized for hector_quadrotor.
