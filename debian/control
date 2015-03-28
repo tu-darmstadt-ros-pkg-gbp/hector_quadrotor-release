@@ -1,0 +1,12 @@
+Source: ros-hydro-hector-quadrotor-demo
+Section: misc
+Priority: extra
+Maintainer: Johannes Meyer <meyer@fsr.tu-darmstadt.de>
+Build-Depends: debhelper (>= 9.0.0), ros-hydro-catkin
+Homepage: http://ros.org/wiki/hector_quadrotor_demo
+Standards-Version: 3.9.2
+
+Package: ros-hydro-hector-quadrotor-demo
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-hydro-hector-gazebo-worlds, ros-hydro-hector-geotiff, ros-hydro-hector-mapping, ros-hydro-hector-quadrotor-gazebo, ros-hydro-hector-trajectory-server
+Description: hector_quadrotor_demo contains various launch files and needed dependencies for demonstration of the hector_quadrotor stack (indoor/outdoor flight in gazebo etc.)
