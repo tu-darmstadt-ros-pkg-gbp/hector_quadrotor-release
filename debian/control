@@ -1,0 +1,12 @@
+Source: ros-indigo-hector-quadrotor-gazebo-plugins
+Section: misc
+Priority: extra
+Maintainer: Johannes Meyer <meyer@fsr.tu-darmstadt.de>
+Build-Depends: debhelper (>= 9.0.0), gazebo2, ros-indigo-catkin, ros-indigo-geometry-msgs, ros-indigo-hector-gazebo-plugins, ros-indigo-hector-quadrotor-model, ros-indigo-hector-uav-msgs, ros-indigo-roscpp, ros-indigo-std-srvs
+Homepage: http://ros.org/wiki/hector_quadrotor_gazebo_plugins
+Standards-Version: 3.9.2
+
+Package: ros-indigo-hector-quadrotor-gazebo-plugins
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-indigo-gazebo-ros, ros-indigo-geometry-msgs, ros-indigo-hector-gazebo-plugins, ros-indigo-hector-quadrotor-model, ros-indigo-hector-uav-msgs, ros-indigo-roscpp, ros-indigo-std-srvs
+Description: hector_quadrotor_gazebo_plugins provides gazebo plugins for using quadrotors in gazebo. The hector_gazebo_ros_baro sensor plugin simulates an altimeter based on barometric pressure. hector_quadrotor_simple_controller is a simple controller allowing to command the quadrotor's velocity using a geometry_msgs/Twist message for teleoperation just by means of applying forces and torques to the model.
